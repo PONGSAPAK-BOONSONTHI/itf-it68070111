@@ -1,74 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ITF 2025</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-	<script src="script.js"></script>
-    <body>
-        <nav>
-            <p>68070111</p>
-            <h2>ITF Website</h2>
-            <p>Week 14</p>
-        </nav>
-        <div class="container">
-            <h2 id="my-title">Welcome to my ITF Website!</h2>
-            <img src="image/Cool.png" width="96" alt="Cool" />
-			<!-- <hr>
-			<div>
-				<label for="my_input">Enter any number:</label>
-				<input type="number" id="my_input" value="1">
-				<button type="button" onclick="calc(this.innerText)">+1</button>
-				<button type="button" onclick="calc(this.innerText)">-1</button>
-			</div> -->
-            
-            <div class="con-finance">
-                <div class="Account-Overview">
-                    <h1>Account Overview</h1>
-                    <div class="con-account">
-                        <div>
-                            <img src="image/user.png" width="96" alt="user">
-                        </div>
-                        <div class="con-account-iofo<">
-                            <h3>Account Information</h3>
-                            <div class="account-info">
-                                <p>Name: Pongsapak Boonsonthi</p>
-                                <p>Type: Savings Account</p>
-                            </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITF 2025</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav>
+        <h2>68070111</้>
+        <h2>ITF Website</h2>
+        <h2>Week 14</้>
+    </nav>
+    <div class="container">
+        <!-- <h2 id="my-title">Welcome to my ITF Website!</h2> -->
+
+        <div class="con-finance">
+            <div class="Account-Overview">
+                <h1>Account Overview</h1>
+                <div class="con-account">
+                    <div>
+                        <img src="image/user.png" width="96" alt="user">
+                    </div>
+                    <div class="con-account-info">
+                        <h3>Account Information</h3>
+                        <div class="account-info">
+                            <p>Name: Pongsapak Boonsonthi</p>
+                            <p>Type: NG IT23</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="con-account">
-                        <div>
-                            <img src="image/briefcase.png" width="96" alt="user">
+                <div class="con-account">
+                    <div>
+                        <img src="image/briefcase.png" width="96" alt="user">
+                    </div>
+                    <div class="con-account-info">
+                        <h3>Balance Information</h3>
+                        <div class="account-info">
+                            <div>
+                                <div class="title">Account Balance :</div>
+                                <input type="number" id="account-balance" value="0">
+                            </div>
+                            <div>
+                                <div class="title">Cash Balance :</div>
+                                <input type="number" id="cash-balance" value="0">
+                            </div>
+                            <button id="set-balance-btn" onclick="setBalanceValues()">Set Balance Values</button>
                         </div>
-                        <div class="con-account-iofo<">
-                            <h3>Balance Information</h3>
-                            <div class="account-info">
-                                <div>
-                                    <p>Current account balance:</p>
-                                    <input type="number" name="" id="">
-                                </div>
-                                <div>
-                                    <p>Current cash balance:</p>
-                                    <input type="number" name="" id="">
-                                </div>
-                                <button>Change</button>
+                    </div>
+                </div>
+
+                <div class="con-account">
+                    <div>
+                        <img src="image/toolbox.png" width="96" alt="user">
+                    </div>
+                    <div class="con-account-info">
+                        <h3>Bank Operation</h3>
+                        <div class="account-info">
+                            <div class="title" >Amount to deposit/withdraw :</div>
+                            <input type="number" id="transaction-amount" placeholder="Enter amount">
+                            <div class="operation-buttons">
+                                <button id="deposit-btn" onclick="depositMoney()" type="button">Deposit</button>
+                                <button id="withdraw-btn" onclick="withdrawMoney()" type="button">Withdraw</button>
+                            </div>
+                            <div>
+                                <div class="title" >Transaction History :</div>
+                                <textarea id="transaction-history" rows="8" readonly placeholder="History..."></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="Financial-Tools">
-                    <h1>Financial-Tools</h1>
-                    <div>
+            </div>
 
+            <div class="Financial-Tools">
+                <h1>Financial Tools</h1>
+                <div class="con-account">
+                    <div>
+                        <img src="image/calculator.png" width="96" alt="calculator">
+                    </div>
+                    <div class="con-account-info">
+                        <h3>Currency Converter</h3>
+                        <div class="account-info">
+                            <div>
+                                <div class="title">Input balance:</div>
+                                <input type="number" id="input-balance" value="0">
+                            </div>
+                            <div>
+                                <div class="title">Output balance:</div>
+                                <input type="number" id="output-balance" value="0" readonly>
+                            </div>
+                            <div>
+                                <div class="title">Input currency:</div>
+                                <select id="input-currency">
+                                    <option value="USD">USD</option>
+                                    <option value="THB">THB</option>
+                                </select>
+                                <button onclick="convertCurrency()" type="button">Convert</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
-    </body>
+    </div>
+</body>
+<script src="script.js"></script>
 </html>
