@@ -78,3 +78,47 @@ function calc(x) {
     my_input.value = current_value
   }
 }
+
+// Task 3: Currency Converter API Integration
+async function convertCurrency() {
+  const inputBalance = document.getElementById('input-balance')
+  const outputBalance = document.getElementById('output-balance')
+  const inputCurrency = document.getElementById('input-currency')
+  
+  const amount = parseFloat(inputBalance.value)
+  const fromCurrency = inputCurrency.value
+  const toCurrency = fromCurrency === 'USD' ? 'THB' : 'USD'
+  
+  if (isNaN(amount) || amount <= 0) {
+    alert('กรุณากรอกจำนวนเงินให้ถูกต้อง')
+    return
+  }
+  
+  try {
+    const response = await fetch('http://localhost:3000/convert', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        amount: amount,
+        fromCurrency: fromCurrency,
+        toCurrency: toCurrency
+      })
+    })
+    
+    const result = await response.json()
+    
+    if (response.ok) {
+      outputBalance.value = result.convertedAmount
+      
+      // Update the display to show conversion info
+      const time = new Date().toLocaleString('th-TH')
+      console.log(`${time} - แปลง ${result.originalAmount} ${result.originalCurrency} เป็น ${result.convertedAmount} ${result.targetCurrency} (อัตราแลกเปลี่ยน: ${result.exchangeRate})`)
+    } else {
+      alert('เกิดข้อผิดพลาดในการแปลงสกุลเงิน: ' + result.error)
+    }
+  } catch (error) {
+    alert('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้: ' + error.message)
+  }
+}
