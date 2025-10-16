@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML FORM</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    .Form {
+      display: flex;
+      flex-direction: column;
+      min-width: 14rem;
+      padding: 2rem;
+      border: 1px solid;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="Form">
+    <h3 id="Head">FORM</h3>
+    <label for="owner">Owner:</label>
+    <input type="text" id="owner" name="owner" />
+    <br>
+
+    <label for="color">Color:</label>
+    <input type="text" id="color" name="color" />
+    <br>
+
+    <label for="type">Type:</label>
+    <select name="type" id="type">
+      <option value="Toyota">Toyota</option>
+      <option value="Isuzu">Isuzu</option>
+      <option value="Honda">Honda</option>
+      <option value="Ford">Ford</option>
+    </select>
+    <br>
+
+    <label for="wheels">Wheels:</label>
+    <input type="number" id="wheels" name="wheels" />
+    <br>
+
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" name="weight" />
+    <br>
+
+    <button id="send">SEND</button>
+    <button id="ping">PING</button>
+    <br>
+    <textarea rows="6" style="resize: none;" readonly name="info" id="info"></textarea>
+  </div>
+
+  <script>
+
+    document.getElementById('ping').addEventListener("click", async () => {
+      const h3 = document.getElementById("Head")
+      const response = await fetch("http://localhost:5000/ping")
+
+      const text = await response.json();
+      // CHANGE H3
+      h3.textContent = text.text
+    })
+
+    document.getElementById('send').addEventListener("click", async () => {
+      // VALUE FROM INPUT ELEMENT BY ID
+      const owner = document.getElementById("owner").value;
+      const color = document.getElementById("color").value;
+      const type = document.getElementById("type").value;
+      const wheels = document.getElementById("wheels").value;
+      const weight = document.getElementById("weight").value;
+
+      // FETCH TO API (POST METHOD)
+      const response = await fetch("http://localhost:5000/form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          owner: owner,
+          color: color,
+          type: type,
+          wheels: wheels,
+          weight: weight,
+        })
+      })
+
+      const text = await response.json();
+      // EDIT TEXT AREA
+      let area = document.getElementById("info");
+      area.value = `${text.owner}\n${text.color}\n${text.type}\n${text.wheels}\n${text.weight}\n${text.id}`;
+
+      // SHOW IN CONSOLE
+      console.log(text);
+    })
+  </script>
+
+</body>
+
+</html>
